@@ -42,27 +42,31 @@ It's an acronym I made up, but it's helpful for remembering the six steps of wor
 This project was built through a series of prompts to Junie, evolving from a simple concept to a well-structured Go application. The exact prompts from the development are included below:
 
 ### Prompt 1: Initial planning
-> Arr, Junie, me hearty. I'm a swashbuckling pirate cap'n who needs a Go program to help me calculate how to share out the booty from my latest captured treasure ship. Don't code anything yet, but show me a brief plan of what the tool might look like and how it would be structured.
+> *Arr, Junie, me hearty. I'm a swashbuckling pirate cap'n who needs a Go program to help me calculate how to share out the booty from my latest captured treasure ship. Don't code anything yet, but show me a brief plan of what the tool might look like and how it would be structured.*
 
-### Prompt 2: Refactoring and quality improvements
-> Nice job, Junie, but I have a few suggestions for improvement.
+### Prompt 2: First iteration on the plan
+
+> *Let's start with a much simpler version of that: I'd like to be able to run the 'booty' calculator and answer two questions: the number of crew, and the number of pieces of eight to be divided among them. Assume everyone has an equal share. The tool should print out how much each crew member is due. Write just enough code to achieve this, and then we'll think about the next stage.*
+
+### Prompt 3: Review, refactoring and quality improvements
+> *Nice job, Junie, but I have a few suggestions for improvement.
 >
 > 1. Instead of creating a `bufio.Scanner` in `main` and passing a pointer to it into the `askInt` function, let's eliminate some of that paperwork. Change `askInt` to take just the prompt string, and have it create the scanner internally.
 > 2. The `askInt` function shouldn't print error messages and call `os.Exit` if there's a scan error. Instead, have it return any error along with the integer result. Let `main` take care of all the printing and exiting.
 > 3. If there's an error from `strconv.Atoi`, include the invalid input in the error message. For example, "Sorry, I didn't understand %q. Please enter a whole number."
-> 4. Move the shares calculation into its own function, so that we decouple the input/output code from the business logic. Have it return the share and remainder values, so that `main` can print them out.
+> 4. Move the shares calculation into its own function, so that we decouple the input/output code from the business logic. Have it return the share and remainder values, so that `main` can print them out.*
 
-### Prompt 3: Project restructuring and captain's double share
-> Shiver me timbers, Junie, that be some fine work. Could you now please move the business logic functions into a 'booty' package in the project root, and put the 'main.go' file into a 'cmd/booty' subfolder? Also, could you change the plunder calculations so that the captain gets twice the share of a regular crewmember?
+### Prompt 4: Assessment of progress and adjustment
 
-### Prompt 4: Output enhancement
-> Print out the captain's share separately
+> *Shiver me timbers, Junie, that be some fine work. Could you now please move the business logic functions into a 'booty' package in the project root, and put the 'main.go' file into a 'cmd/booty' subfolder? Also, could you change the plunder calculations so that the captain gets twice the share of a regular crewmember? Print out the captain's share separately.*
 
 ### Prompt 5: Testing and validation
-> Arr, please add some unit tests now for the 'CalculateShares' function. Generate at least ten test cases. Move the 'askInt' function into the 'booty' package too, and add logic to check that the number entered is always 1 or greater, or return an appropriate error if it's not. Have the function take an 'io.Reader' to read input from, and an 'io.Writer' to print prompts to. Generate two tests for this function, one for valid inputs, one for invalid inputs.
 
-### Prompt 6: Test improvements
-> Tis a fine set of tests ye have there, Junie. Could you make them all run in parallel, and in the table tests could you use a map of test cases keyed by name, and then use 't.Run' in the test loop with the map key as the subtest name? That'll make it easier on any scurvy dogs trying to understand the failure output. Also, don't try to inspect the error string itself for invalid inputs; that leads to fragile tests. Instead, just check that 'AskInt' returns any non-nil error for these cases.
+> *Arr, please add some unit tests now for the 'CalculateShares' function. Generate at least ten test cases. Move the 'askInt' function into the 'booty' package too, and add logic to check that the number entered is always 1 or greater, or return an appropriate error if it's not. Have the function take an 'io.Reader' to read input from, and an 'io.Writer' to print prompts to. Generate two tests for this function, one for valid inputs, one for invalid inputs.*
+
+And a few test improvements:
+
+> *Tis a fine set of tests ye have there, Junie. Could you make them all run in parallel, and in the table tests could you use a map of test cases keyed by name, and then use 't.Run' in the test loop with the map key as the subtest name? That'll make it easier on any scurvy dogs trying to understand the failure output. Also, don't try to inspect the error string itself for invalid inputs; that leads to fragile tests. Instead, just check that 'AskInt' returns any non-nil error for these cases.*
 
 ## Installation
 
@@ -117,4 +121,4 @@ This project demonstrates:
 - Error handling best practices
 
 ## License
-This be free software for all ye scallywags to use as ye please under the terms o' the [MIT licence](LICENSE)!
+This be free software for all ye scallywags to use as ye please under the terms o' the [MIT license](LICENSE)!
