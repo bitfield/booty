@@ -14,17 +14,17 @@ func TestCalculateShares(t *testing.T) {
 		share int
 		rest  int
 	}{
-		"zero total, one crew":              {total: 0, crew: 1, share: 0, rest: 0},
-		"odd with captain double share":      {total: 1, crew: 1, share: 0, rest: 1},
-		"exact division with captain":        {total: 2, crew: 1, share: 1, rest: 0},
-		"remainder with captain":             {total: 3, crew: 1, share: 1, rest: 1},
-		"two crew plus captain":              {total: 10, crew: 2, share: 3, rest: 1},
-		"three crew plus captain":            {total: 10, crew: 3, share: 2, rest: 2},
-		"larger crew":                        {total: 100, crew: 10, share: 9, rest: 1},
-		"large numbers":                      {total: 1_000_000, crew: 1, share: 500_000, rest: 0},
-		"zero total many crew":               {total: 0, crew: 5, share: 0, rest: 0},
-		"prime totals":                       {total: 13, crew: 7, share: 1, rest: 5},
-		"small total larger crew":            {total: 1, crew: 2, share: 0, rest: 1},
+		"zero total, one crew":          {total: 0, crew: 1, share: 0, rest: 0},
+		"odd with captain double share": {total: 1, crew: 1, share: 0, rest: 1},
+		"exact division with captain":   {total: 2, crew: 1, share: 1, rest: 0},
+		"remainder with captain":        {total: 3, crew: 1, share: 1, rest: 1},
+		"two crew plus captain":         {total: 10, crew: 2, share: 3, rest: 1},
+		"three crew plus captain":       {total: 10, crew: 3, share: 2, rest: 2},
+		"larger crew":                   {total: 100, crew: 10, share: 9, rest: 1},
+		"large numbers":                 {total: 1_000_000, crew: 1, share: 500_000, rest: 0},
+		"zero total many crew":          {total: 0, crew: 5, share: 0, rest: 0},
+		"prime totals":                  {total: 13, crew: 7, share: 1, rest: 5},
+		"small total larger crew":       {total: 1, crew: 2, share: 0, rest: 1},
 	}
 
 	for name, tc := range tests {
